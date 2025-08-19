@@ -5,7 +5,7 @@
 * Request Access to Github from Semjons Sapkins.
 
 * Clone the repository
-```git clone TBA ```
+```git clone https://github.com/SemjonsSapkinsIKEA/api_test_automation ```
 
 * Install dependencies
 
