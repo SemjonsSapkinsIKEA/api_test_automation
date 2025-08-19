@@ -1,0 +1,6 @@
+{
+"restful-auth": "https://restful-booker.herokuapp.com/auth",
+"restful-ping": "https://restful-booker.herokuapp.com/ping",
+"restful-booking": "https://restful-booker.herokuapp.com/booking",
+"restful-delete-booking": "https://restful-booker.herokuapp.com/booking/1"
+}
