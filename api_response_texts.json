@@ -41,7 +41,20 @@
         "updatedNameOnly" :{
             "firstname": "Newtest",
             "lastname": "Testman"
-        }, 
+        },
+
+        "partialUpdateVerification" : {
+              "firstname": "Newtest",
+                "lastname": "Testman", 
+                "totalprice": 111,
+                "depositpaid": true,
+                "bookingdates": {
+                    "checkin": "2025-08-25",
+                    "checkout": "2025-09-05"
+        },
+        "additionalneeds": "Breakfast"
+
+        },
       "deleteBooking": {
         "firstname": "Tim",
         "lastname": "Deleteman", 

@@ -85,8 +85,6 @@ Contains all of the text data needed for booking via the API. This includes the 
 * Credentials.json
 Stores credentials necessary for creating sessions tokens via the API. It is highly important that in the future for REAL projects that credentials are not stored openly in files in such a manner. Ideally, GitHub secrets or similar should be used to hide sensitive data. Refer to the GitHub secrets link under "Useful Links" to learn more. 
 
-
-
 ## Useful Links 
 
 The following links are highly useful to understand the project.

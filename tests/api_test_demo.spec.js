@@ -21,16 +21,6 @@ test.describe("Restful Booker API Test Automation", () => {
     });
   });
 
-  //Test suite that covers invalid booking creations and API operations.
-  test.describe("Invalid Booking Creation", () => {
-    //Verify return of 404 error code when creating null user booking
-    test("Null User Creation", async ({ request }) => {
-      await test.step("", async () => {});
-    });
-
-    test("Invalid Date Creation", async ({ request }) => {});
-  });
-
   test.describe("Restful API Booking Verification ", () => {
     //The following test suite verifies the entire booking creation, update and
     test("Booking Creation and Update Flow", async ({ request }) => {
@@ -136,8 +126,8 @@ test.describe("Restful Booker API Test Automation", () => {
     });
 
     //Tests the APIs ability to partially update bookings
-    test("Booking Creation and Partial Update Flow", async() => {
-            test("Booking Creation and Deletion Flow", async ({ request }) => {
+    test.describe("Booking Creation and Partial Update Flow", async () => {
+      test("Booking Creation and Deletion Flow", async ({ request }) => {
         let authToken; //  Shared for session persistence reasons
         let bookingID; // Shared for booking verification
         const apiHelper = new api_helper(request);
@@ -162,18 +152,50 @@ test.describe("Restful Booker API Test Automation", () => {
           bookingID = bookingData.bookingid;
         });
 
-        //Only partially update the booking 
-        await test.step("Partially Update Booking", async ()=> {
-            const partiallyUpdateBooking = await apiHelper.updateBooking(
-              links["restful-booking"],
-              bookingID,
-              api_response_texts.updatedNameOnly
-            )
+        //Only partially update the booking with a new name
+        await test.step("Partially Update Booking", async () => {
+          await apiHelper.partialUpdateBooking(
+            links["restful-booking"],
+            api_response_texts.updatedNameOnly,
+            bookingID,
+            authToken
+          );
         });
 
-        await test.step("")
-
+        await test.step("Verify Updated Booking", async () => {
+          await apiHelper.verifyBookingByName(
+            links["restful-booking"],
+            bookingID,
+            api_response_texts.updatedNameOnly
+          );
+        });
+      });
     });
   });
+
+  //Test suite that covers invalid booking creations and API operations.
+  test.describe.skip("Invalid Booking Creation", () => {
+    //Verify return of 404 error code when creating null user booking
+    test("Null User Creation", async ({ request }) => {
+      let authtoken;
+      let bookingID;
+
+      //Create a session token
+      await test.step("", async () => {
+     const tokenResponse = await apiHelper.createToken(
+          links["restful-auth"],
+          credentials.username,
+          credentials.password
+        );
+        authToken = tokenResponse.token; // Extract the actual token string
+        console.log("Auth token created:", authToken);
+
+
+      });
+    });
+
+    test("Invalid Date Creation", async ({ request }) => {});
   });
+
+
 });

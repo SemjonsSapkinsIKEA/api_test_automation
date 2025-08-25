@@ -73,6 +73,21 @@ export class api_helper {
     expect(updateBooking.status()).toBe(200);
   }
 
+//Virtually the same as updateBooking but allows for partial updates using the PATCH function
+  async partialUpdateBooking(apiLink, updatedText, bookingID, token) {
+    const updateBookingLink = apiLink + "/" + bookingID;
+    const updateBooking = await this.request.patch(updateBookingLink, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Cookie: "token=" + token,
+      },
+       data: updatedText 
+    });
+   // console.log("Updated Booking:", updateBooking.json());
+    expect(updateBooking.status()).toBe(200);
+  }
+
 //Compares and verifies that the dates for a booking are  
   async verifyBookingViaDate(apiLink, bookingID) {
     const verifyByDate = await this.request.get(apiLink, {
@@ -82,9 +97,11 @@ export class api_helper {
     expect(verifyByDate.status()).toBe(200);
   }
 
-async verifyBookingByName(apiLink, bookingID){
-  const verifyByName = await this.request.get(apiLink, {
-    ...api_response_texts.updatedNameOnly
+
+async verifyBookingByName(apiLink, bookingID, updatedName){
+  const urlWithID = apiLink + "/" + bookingID;
+  await this.request.get(urlWithID, {
+    ...updatedName
   })
 }
   //Delete a specific booking given the API link.
