@@ -23,7 +23,7 @@ The focus of this project is the following website and API:
 Relevant credentials, URLs and status codes can be found exploring the link listed. 
 
 The purpose of the project is to act as a proof of concept in favor of using PlayWright to automate 
-the testing of APIs. Currently, manual testing together with Postman is the favor alternative, but 
+the testing of APIs. Currently, manual testing together with Postman is the favored alternative, but 
 given the transition to using PlayWright for test automation, it would be highly beneficial to 
 centralize the testing to just one tool, PlayWright.
 
